@@ -172,7 +172,7 @@ if __name__ == "__main__":
     parser.add_argument('--ctrgcn_BM_Score', default='./epoch1_test_score/epoch1_test_score_CTR_BM.pkl')
 
 
-    parser.add_argument('--scoreB_folder', default='./epoch1_test_score/')  # scoreB 文件夹路径
+    parser.add_argument('--scoreB_folder', default='./epoch1_test_score_B/')  # scoreB 文件夹路径
     arg = parser.parse_args()
 
     benchmark = arg.benchmark
@@ -277,8 +277,8 @@ if __name__ == "__main__":
     result = gp_minimize(objective, space, n_calls=200, random_state=0)
     print('Maximum accuracy: {:.4f}%'.format(-result.fun * 100))
     print('Optimal weights: {}'.format(result.x))
-    evaluate_with_weights(result.x)
-    # calculate_weight(result.x)
+    # evaluate_with_weights(result.x)
+    calculate_weight(result.x)
 
 
 
