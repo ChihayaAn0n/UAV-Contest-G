@@ -1,0 +1,59 @@
+# command line: main.py --config ./config_B/ctrgcn_V1_J_3d.yaml --phase test --save-score True --weights ./output_ga/ctrgcn_V1_J_3D/runs-74-47656.pt
+
+base_lr: 0.2
+batch_size: 32
+config: ./config_B/ctrgcn_V1_J_3d.yaml
+device: 0
+eval_interval: 5
+feeder: dataset.feeder_xyz.Feeder
+ignore_weights: []
+log_interval: 100
+lr_decay_rate: 0.1
+model: model.ctrgcn_xyz.Model
+model_args:
+  graph: graph.Simcc.Graph
+  graph_args:
+    labeling_mode: spatial
+  num_class: 155
+  num_person: 2
+  num_point: 17
+model_saved_name: ''
+nesterov: true
+num_epoch: 90
+num_worker: 8
+optimizer: SGD
+phase: test
+print_log: true
+save_epoch: 30
+save_interval: 1
+save_score: true
+seed: 1
+show_topk:
+- 1
+- 5
+start_epoch: 0
+step:
+- 70
+- 80
+test_batch_size: 32
+test_feeder_args:
+  bone: false
+  data_path: ./dataset/save_3d_pose_B/test_joint_B.npz
+  data_split: test
+  p_interval:
+  - 0.95
+  vel: false
+  window_size: -1
+train_feeder_args:
+  bone: false
+  data_path: dataset/save_3d_pose/train_joint.npz
+  data_split: train
+  p_interval:
+  - 0.5
+  - 1
+  vel: false
+  window_size: -1
+warm_up_epoch: 5
+weight_decay: 0.0001
+weights: ./output_ga/ctrgcn_V1_J_3D/runs-74-47656.pt
+work_dir: ./output_gb/ctrgcn_V1_J_3D

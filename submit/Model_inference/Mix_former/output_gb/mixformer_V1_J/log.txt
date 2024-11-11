@@ -1,0 +1,2 @@
+[ Mon Nov 11 08:55:02 2024 ] Load weights from ./output_ga/mixformer_V1_J/runs-59-7670.pt.
+[ Mon Nov 11 08:55:08 2024 ] using warm up, epoch: 5

@@ -1,0 +1,48 @@
+base_lr: 0.01
+batch_size: 16
+config: ./config_B/tegcn_V1_B_3d_test.yaml
+device:
+- 0
+eval_interval: 5
+feeder: dataset.feeder_tegcn_save.Feeder
+ignore_weights: []
+label_smoothing: 0.0
+log_interval: 100
+model: model.tegcn_xyz.Model
+model_args:
+  graph: graph.uav.Graph
+  graph_args:
+    labeling_mode: spatial
+  num_class: 155
+  num_person: 2
+  num_point: 17
+model_saved_name: ./output/tegcn_V1_J_3d
+nesterov: false
+num_epoch: 80
+num_worker: 8
+only_train_epoch: 60
+only_train_part: false
+optimizer: SGD
+phase: test
+print_log: true
+save_interval: 1
+save_score: true
+seed: 777
+show_topk:
+- 1
+- 5
+start_epoch: 0
+step:
+- 20
+- 40
+- 60
+test_batch_size: 32
+test_feeder_args:
+  data_path: ./data/uav_B/test_bone.npy
+  debug: false
+  label_path: ./data/uav_B/test_label_B.pkl
+train_feeder_args: {}
+warm_up_epoch: 5
+weight_decay: 0.0005
+weights: ./output_ga/tegcn_V1_B_3d/runs-39-20880.pt
+work_dir: ./output_gb/tegcn_V1_B_3d

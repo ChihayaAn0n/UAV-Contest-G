@@ -1,0 +1,44 @@
+work_dir: ./output_ga/tegcn_V1_J_3d
+model_saved_name: ./output_ga/tegcn_V1_J_3d/runs
+# feeder
+feeder: dataset.feeder_tegcn_save.Feeder
+train_feeder_args:
+  data_path: ./data/uav/xsub/train_joint.npy
+  label_path: ./data/uav/xsub/train_label.pkl
+  debug: False
+  random_choose: False
+  random_shift: False
+  random_move: False
+  window_size: -1
+  normalization: False
+
+  
+test_feeder_args:
+  data_path: ./data/uav/xsub/val_joint.npy
+  label_path: ./data/uav/xsub/val_label.pkl
+
+# model
+model: model.tegcn_xyz.Model
+model_args:
+  num_class: 155
+  num_point: 17
+  num_person: 2
+  graph: graph.uav.Graph
+  graph_args:
+    labeling_mode: 'spatial'
+
+#optim
+weight_decay: 0.0001
+base_lr: 0.1
+step: [30, 40]
+
+# training
+device: 0
+batch_size: 32
+test_batch_size: 32
+num_epoch: 65
+nesterov: True
+only_train_epoch: 60
+seed: 777
+warm_up_epoch: 5
+num_worker: 2

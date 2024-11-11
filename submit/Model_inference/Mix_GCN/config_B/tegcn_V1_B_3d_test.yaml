@@ -1,0 +1,26 @@
+work_dir: ./output_gb/tegcn_V1_B_3d
+
+# feeder
+feeder: dataset.feeder_tegcn_save.Feeder
+test_feeder_args:
+  data_path: ./data/uav_B/test_bone.npy
+  label_path: ./data/uav_B/test_label_B.pkl
+  debug: False
+
+# model
+model: model.tegcn_xyz.Model
+model_args:
+  num_class: 155
+  num_point: 17
+  num_person: 2
+  graph: graph.uav.Graph
+  graph_args:
+    labeling_mode: 'spatial'
+
+# test
+phase: test
+device: [0]
+test_batch_size: 32
+weights: ./output/tegcn_V1_J_3d_save/runs-49-25650.pt
+
+save_score: True

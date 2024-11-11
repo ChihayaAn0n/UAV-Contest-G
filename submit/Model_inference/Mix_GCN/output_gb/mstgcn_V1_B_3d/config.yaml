@@ -1,0 +1,60 @@
+# command line: main.py --config ./config_B/mstgcn_V1_B_3d.yaml --phase test --save-score True --weights ./output_ga/mstgcn_V1_B_3d/runs-76-24472.pt
+
+base_lr: 0.1
+batch_size: 64
+config: ./config_B/mstgcn_V1_B_3d.yaml
+device:
+- 0
+eval_interval: 5
+feeder: dataset.feeder_xyz.Feeder
+ignore_weights: []
+log_interval: 100
+lr_decay_rate: 0.1
+model: model.mstgcn_xyz.Model
+model_args:
+  graph: graph.Simcc.Graph
+  graph_args:
+    labeling_mode: spatial
+  num_class: 155
+  num_person: 2
+  num_point: 17
+model_saved_name: ''
+nesterov: true
+num_epoch: 90
+num_worker: 8
+optimizer: SGD
+phase: test
+print_log: true
+save_epoch: 30
+save_interval: 1
+save_score: true
+seed: 1
+show_topk:
+- 1
+- 5
+start_epoch: 0
+step:
+- 70
+- 80
+test_batch_size: 64
+test_feeder_args:
+  bone: true
+  data_path: ./dataset/save_3d_pose_B/test_joint_B.npz
+  data_split: test
+  p_interval:
+  - 0.95
+  vel: false
+  window_size: 64
+train_feeder_args:
+  bone: true
+  data_path: dataset/save_3d_pose/train_joint.npz
+  data_split: train
+  p_interval:
+  - 0.5
+  - 1
+  vel: false
+  window_size: 64
+warm_up_epoch: 5
+weight_decay: 0.0004
+weights: ./output_ga/mstgcn_V1_B_3d/runs-76-24472.pt
+work_dir: ./output_gb/mstgcn_V1_B_3d
